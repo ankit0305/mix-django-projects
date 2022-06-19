@@ -7,6 +7,7 @@ urlpatterns = [
     path('', include(('home.urls', 'home'), namespace='home')),
     path('', include(('urlshortner.urls', 'home'), namespace='home')),
     path('', include(('contactform.urls', 'home'), namespace='home')),
+    path('', include(('weatherinfo.urls', 'home'), namespace='home')),
 
     # Urls
     path(r'urlshortner', include('urlshortner.urls')),
