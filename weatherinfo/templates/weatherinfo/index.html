@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What's the weather like?</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="has-text-centered is-size-4">
+                    What's the weather like?
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-multiline">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token%}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{form.name}}
+                            </div>
+                            <div class="control">
+                                <button class="btn-floating btn-large waves-effect waves-light red">
+                                    Add City
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% for weather in weather_data reversed%}
+    <div class = 'container'>
+    <div class="row" style="text-align: center;>
+        <div class="col s5 m3">
+          <div class="card">
+            <p class="is-capitalized">
+                <b><span class="title">{{weather.city}}</span></b>
+                <br>
+                <span class="subtitle">{{weather.temperature}}° C</span>
+                <br> {{weather.description}}
+                <br> Feels like: {{weather.feels_like}}° C
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    <footer class="footer">
+    </footer>
+</body>
+</html>
